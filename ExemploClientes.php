@@ -29,12 +29,13 @@ public function tkCliente($ident){
     $stmt->execute();
     $arr = $stmt->fetch();
      
-    if($arr > 0){
+    if($arr > 0){ //se houver registros no array, faz o foreach
           
           foreach($arr as $key => $value){
               echo ($value);
             } 
     }else{
+        //se nao,retorna o metodo com a listbox dos clientes
         return ($this->listBox());
     }
  
