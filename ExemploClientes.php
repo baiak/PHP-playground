@@ -71,4 +71,21 @@ public function clienteInscEst($ident){
 
 }
 
+//comando para inserir dados na base de dados
+$stmt = $db->insert("baiaksoft_fenixinfo2.tests",[
+    "nome"=>"NOME",
+    "sobrenome"=>"SOBRENOME"
+], true);
+$stmt->execute();
+
+//se o comando foi executado com sucesso
+if($stmt){
+    //executa o SQL para pegar o ultimo ID inserido
+    $stmt = $db->conn->prepare("SELECT LAST_INSERT_ID()");
+    //metodo q executa o comando
+    $stmt->execute();
+    print_r($stmt->fetchColumn());
+    echo('Deu boa!');
+} 
+
 ?>
