@@ -41,6 +41,33 @@ public function tkCliente($ident){
  
   }
 
+  //funcao global que busca uma informacao especifica de um cliente no banco de dados
+  public function dadosCliente($ident, $atributo){
+    $db = new DB();
+    $stmt= $db->conn->prepare("SELECT * FROM baiaksoft_fenixinfo2.cliente WHERE idCLIENTE = :ID_CLIENTE");
+    $stmt->bindValue(":ID_CLIENTE", $ident);
+    $stmt->execute();
+    $arr = $stmt->fetchAll();
+
+    if($arr > 0){
+      foreach($arr as $key => $value){
+          return($value[$atributo]);//atributo é o campo da entidade no banco de dados
+      }
+    }else{
+        return false;
+    }
+ }
+
+public function clienteNome($ident){
+   return $this->dadosCliente($ident, "NOME");
+}
+public function clienteCPF_CNPJ($ident){
+    return $this->dadosCliente($ident, "CPF_CNPJ");  
+}
+public function clienteInscEst($ident){
+    return $this->dadosCliente($ident, "INSC_EST");
+}
+
 
 }
 
