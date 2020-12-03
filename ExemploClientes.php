@@ -54,6 +54,7 @@ public function tkCliente($ident){
           return($value[$atributo]);//atributo é o campo da entidade no banco de dados
       }
     }else{
+        //se nao houver registro retorna falso
         return false;
     }
  }
@@ -67,7 +68,16 @@ public function clienteCPF_CNPJ($ident){
 public function clienteInscEst($ident){
     return $this->dadosCliente($ident, "INSC_EST");
 }
-
+//exibindo todos os dados do cliente
+public function exibeCliente($ident){
+    echo("<b>".$this->clienteNome($ident)."</b> &nbsp; - &nbsp;CPF/CNPJ: ".$this->clienteCPF_CNPJ($ident));
+    if($this->clienteTipo($ident) == "juridica"){
+        echo("&nbsp; &nbsp; - &nbsp; &nbsp;Inscrição Estadual: ".$this->clienteInscEst($ident));
+    }
+    echo ("<br>");
+    echo($this->tkTelefones($ident));
+    echo("<br>Endereço:<br> ".$this->tkEndereco($ident, "LOGRADOURO")."&nbsp; - CEP: ".$this->tkEndereco($ident, "CEP"));
+    echo("<br>".$this->tkEndereco($ident, "BAIRRO")." - ".$this->tkEndereco($ident, "CIDADE"). " - ".$this->tkEndereco($ident, "ESTADO") );
 
 }
 
