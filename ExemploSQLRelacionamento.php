@@ -1,5 +1,5 @@
 <?php
-require('../baseDados.php');
+require('baseDados.php');
 
 
 class Insere extends DB{    
